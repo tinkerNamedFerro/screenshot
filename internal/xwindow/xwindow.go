@@ -15,6 +15,7 @@ import (
 
 func Capture(x, y, width, height int) (img *image.RGBA, e error) {
 	defer func() {
+		c.Close()
 		err := recover()
 		if err != nil {
 			img = nil
@@ -25,7 +26,7 @@ func Capture(x, y, width, height int) (img *image.RGBA, e error) {
 	if err != nil {
 		return nil, err
 	}
-	//defer c.Close()
+	//defer 
 
 	err = xinerama.Init(c)
 	if err != nil {
@@ -125,7 +126,6 @@ func Capture(x, y, width, height int) (img *image.RGBA, e error) {
 			}
 		}
 	}
-	c.Close()
 	return img, e
 }
 
