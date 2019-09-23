@@ -13,9 +13,10 @@ import (
 	"github.com/tinkerNamedFerro/screenshot/internal/util"
 )
 
+
 func Capture(x, y, width, height int) (img *image.RGBA, e error) {
 	defer func() {
-		c.Close()
+		
 		err := recover()
 		if err != nil {
 			img = nil
@@ -26,7 +27,7 @@ func Capture(x, y, width, height int) (img *image.RGBA, e error) {
 	if err != nil {
 		return nil, err
 	}
-	//defer 
+	//defer c.Close()
 
 	err = xinerama.Init(c)
 	if err != nil {
