@@ -6,7 +6,6 @@ import (
 	"image/color"
 
 	"github.com/BurntSushi/xgb"
-	"github.com/BurntSushi/xgbutil"
 	mshm "github.com/BurntSushi/xgb/shm"
 	"github.com/BurntSushi/xgb/xinerama"
 	"github.com/BurntSushi/xgb/xproto"
