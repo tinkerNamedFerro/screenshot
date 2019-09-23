@@ -27,7 +27,7 @@ func Capture(x, y, width, height int, c *xgb.Conn) (img *image.RGBA, e error) {
 	//if err != nil {
 	//	return nil, err
 	//}
-	defer c.Close()
+	
 
 	err := xinerama.Init(c)
 	if err != nil {
