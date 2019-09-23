@@ -6,6 +6,7 @@ import (
 	"image/color"
 
 	"github.com/BurntSushi/xgb"
+	"github.com/BurntSushi/xgbutil"
 	mshm "github.com/BurntSushi/xgb/shm"
 	"github.com/BurntSushi/xgb/xinerama"
 	"github.com/BurntSushi/xgb/xproto"
@@ -14,7 +15,7 @@ import (
 )
 
 
-func Capture(x, y, width, height int) (img *image.RGBA, e error) {
+func Capture(x, y, width, height int, c *xgbutil.XUtil) (img *image.RGBA, e error) {
 	defer func() {
 		
 		err := recover()
@@ -23,10 +24,10 @@ func Capture(x, y, width, height int) (img *image.RGBA, e error) {
 			e = fmt.Errorf("%v", err)
 		}
 	}()
-	c, err := xgb.NewConn()
-	if err != nil {
-		return nil, err
-	}
+	//c, err := xgb.NewConn()
+	//if err != nil {
+	//	return nil, err
+	//}
 	defer c.Close()
 
 	err = xinerama.Init(c)
