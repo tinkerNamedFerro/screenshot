@@ -10,7 +10,11 @@ import (
 // CaptureDisplay captures whole region of displayIndex'th display.
 func CaptureDisplay(displayIndex int) (*image.RGBA, error) {
 	rect := GetDisplayBounds(displayIndex)
-	return CaptureRect(rect)
+	c, err := xgb.NewConn()
+	if err != nil {
+		panic(err)
+	}
+	return CaptureRect(rect, c)
 }
 
 // CaptureRect captures specified region of desktop.
