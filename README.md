@@ -11,6 +11,11 @@ screenshot
 * Multiple display supported.
 * `cgo` free for Windows, Linux, FreeBSD, OpenBSD, NetBSD, and Solaris.
 
+fork changes
+=======
+* Allows for xgb connections to be reuses due to memory leak of making new connections for everything screenshot
+* Issue found [here](https://github.com/BurntSushi/xgb/issues/32)
+
 example
 =======
 
@@ -24,15 +29,19 @@ example
 		"image/png"
 		"os"
 		"fmt"
+		"time"
 	)
-
 	func main() {
-		n := screenshot.NumActiveDisplays()
+		c, err := xgb.NewConn()
+		if err != nil {
+			panic(err)
+		}
+		defer c.Close()
 
-		for i := 0; i < n; i++ {
-			bounds := screenshot.GetDisplayBounds(i)
-
-			img, err := screenshot.CaptureRect(bounds)
+		for true {
+			time.Sleep(100 * time.Millisecond)
+			bounds := screenshot.GetDisplayBounds(0)
+			img, err := screenshot.CaptureRect(bounds, c) //Edit to library occurs here!
 			if err != nil {
 				panic(err)
 			}
@@ -44,7 +53,6 @@ example
 			fmt.Printf("#%d : %v \"%s\"\n", i, bounds, fileName)
 		}
 	}
-	```
 
 * output example
 	
