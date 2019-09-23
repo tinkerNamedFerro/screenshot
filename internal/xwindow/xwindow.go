@@ -6,6 +6,7 @@ import (
 	"image/color"
 
 	"github.com/BurntSushi/xgb"
+
 	mshm "github.com/BurntSushi/xgb/shm"
 	"github.com/BurntSushi/xgb/xinerama"
 	"github.com/BurntSushi/xgb/xproto"
@@ -27,7 +28,7 @@ func Capture(x, y, width, height int, c *xgb.Conn) (img *image.RGBA, e error) {
 	//if err != nil {
 	//	return nil, err
 	//}
-	
+	//defer c.Close()
 
 	err := xinerama.Init(c)
 	if err != nil {
@@ -142,7 +143,7 @@ func NumActiveDisplays() (num int) {
 	if err != nil {
 		return 0
 	}
-	//defer c.Close()
+	defer c.Close()
 
 	err = xinerama.Init(c)
 	if err != nil {
@@ -170,7 +171,7 @@ func GetDisplayBounds(displayIndex int) (rect image.Rectangle) {
 	if err != nil {
 		return image.ZR
 	}
-	//defer c.Close()
+	defer c.Close()
 
 	err = xinerama.Init(c)
 	if err != nil {
