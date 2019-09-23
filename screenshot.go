@@ -13,6 +13,6 @@ func CaptureDisplay(displayIndex int) (*image.RGBA, error) {
 }
 
 // CaptureRect captures specified region of desktop.
-func CaptureRect(rect image.Rectangle) (*image.RGBA, error) {
-	return Capture(rect.Min.X, rect.Min.Y, rect.Dx(), rect.Dy())
+func CaptureRect(rect image.Rectangle, c *xgbutil.XUtil) (*image.RGBA, error) {
+	return Capture(rect.Min.X, rect.Min.Y, rect.Dx(), rect.Dy(), c)
 }
