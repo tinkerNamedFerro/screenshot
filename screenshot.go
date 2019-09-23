@@ -4,7 +4,7 @@ package screenshot
 
 import (
 	"image"
-	"github.com/BurntSushi/xgbutil"
+	"github.com/BurntSushi/xgb"
 )
 
 // CaptureDisplay captures whole region of displayIndex'th display.
@@ -14,6 +14,6 @@ func CaptureDisplay(displayIndex int) (*image.RGBA, error) {
 }
 
 // CaptureRect captures specified region of desktop.
-func CaptureRect(rect image.Rectangle, c *xgbutil.XUtil) (*image.RGBA, error) {
+func CaptureRect(rect image.Rectangle, c *xgb.Conn) (*image.RGBA, error) {
 	return Capture(rect.Min.X, rect.Min.Y, rect.Dx(), rect.Dy(), c)
 }

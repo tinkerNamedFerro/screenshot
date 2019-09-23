@@ -15,7 +15,7 @@ import (
 )
 
 
-func Capture(x, y, width, height int, c *xgbutil.XUtil) (img *image.RGBA, e error) {
+func Capture(x, y, width, height int, c *xgb.Conn) (img *image.RGBA, e error) {
 	defer func() {
 		
 		err := recover()
@@ -30,7 +30,7 @@ func Capture(x, y, width, height int, c *xgbutil.XUtil) (img *image.RGBA, e erro
 	//}
 	defer c.Close()
 
-	err = xinerama.Init(c)
+	err := xinerama.Init(c)
 	if err != nil {
 		return nil, err
 	}

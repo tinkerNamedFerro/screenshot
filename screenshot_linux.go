@@ -2,14 +2,14 @@ package screenshot
 
 import (
 	"image"
-	"github.com/BurntSushi/xgbutil"
+	"github.com/BurntSushi/xgb"
 	"github.com/tinkerNamedFerro/screenshot/internal/xwindow"
 )
 
 // Capture returns screen capture of specified desktop region.
 // x and y represent distance from the upper-left corner of main display.
 // Y-axis is downward direction. This means coordinates system is similar to Windows OS.
-func Capture(x, y, width, height int, c *xgbutil.XUtil) (*image.RGBA, error) {
+func Capture(x, y, width, height int, c *xgb.Conn) (*image.RGBA, error) {
 	return xwindow.Capture(x, y, width, height, c)
 }
 
