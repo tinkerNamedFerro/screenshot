@@ -4,6 +4,7 @@ package screenshot
 
 import (
 	"image"
+	"github.com/BurntSushi/xgbutil"
 )
 
 // CaptureDisplay captures whole region of displayIndex'th display.
